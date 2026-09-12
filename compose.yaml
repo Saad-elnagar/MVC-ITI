@@ -1,0 +1,7 @@
+﻿services:
+  mvc_3tir:
+    image: mvc_3tir
+    build:
+      context: .
+      dockerfile: MVC_3Tir/Dockerfile
+
