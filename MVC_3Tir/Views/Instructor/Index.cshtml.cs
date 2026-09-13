@@ -1,0 +1,11 @@
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MVC_3Tir.Views;
+
+public class Index : PageModel
+{
+    public void OnGet()
+    {
+        
+    }
+}

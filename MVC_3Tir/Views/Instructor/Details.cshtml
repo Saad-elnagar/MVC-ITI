@@ -1,0 +1,34 @@
+@model MVC_3Tir.ViewModels.InstructorVM
+
+<h2>Instructor Details</h2>
+
+<div>
+    <h4>@Model.Name</h4>
+
+    <p>
+        <strong>Id:</strong>
+        @Model.Id
+    </p>
+
+    <p>
+        <strong>Name:</strong>
+        @Model.Name
+    </p>
+
+    <p>
+        <strong>Salary:</strong>
+        @Model.Salary
+    </p>
+
+    <p>
+        <strong>Address:</strong>
+        @Model.Address
+    </p>
+
+    <p>
+        <strong>Department:</strong>
+        @Model.DepartmentName
+    </p>
+</div>
+
+<a asp-action="Index">Back to List</a>

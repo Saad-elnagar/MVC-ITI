@@ -1,0 +1,28 @@
+@model IEnumerable<MVC_3Tir.ViewModels.InstructorVM>
+
+<h2>List of Instructors</h2>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Address</th>
+        <th>Department</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var instructor in Model)
+    {
+        <tr>
+            <td>@instructor.Id</td>
+            <td>@instructor.Name</td>
+            <td>@instructor.Salary</td>
+            <td>@instructor.Address</td>
+            <td>@instructor.DepartmentName</td>
+        </tr>
+    }
+    </tbody>
+</table>
