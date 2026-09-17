@@ -1,0 +1,65 @@
+@model MVC_3Tir.ViewModels.Course_VM
+
+@{
+    ViewData["Title"] = "Create Course";
+}
+
+<div class="table-card">
+
+    <h3 class="mb-4">Create Course</h3>
+
+    <form asp-controller="Course"
+          asp-action="Create"
+          method="post">
+
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+
+            <input asp-for="Name"
+                   class="form-control" />
+
+            <span asp-validation-for="Name"
+                  class="text-danger">
+            </span>
+        </div>
+
+        <div class="mb-3">
+
+            <label asp-for="DepartmentId"
+                   class="form-label">
+                Department
+            </label>
+
+            <select asp-for="DepartmentId"
+                    class="form-select"
+                    asp-items="@(new SelectList(ViewBag.Departments, "Id", "Name"))">
+
+                <option value="0">
+                    -- Select Department --
+                </option>
+
+            </select>
+
+            <span asp-validation-for="DepartmentId"
+                  class="text-danger">
+            </span>
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-primary">
+            Create
+        </button>
+
+        <a asp-action="Index"
+           class="btn btn-secondary">
+            Back
+        </a>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,50 +1,268 @@
-﻿<!DOCTYPE html>
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - MVC_3Tir</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/MVC_3Tir.styles.css" asp-append-version="true"/>
-</head>
-<body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVC_3Tir</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2026 - MVC_3Tir - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <title>@ViewData["Title"] - MVC 3Tir</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #f5f7fb;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            min-height: 100vh;
+            background: #111827;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        .brand {
+            padding: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #374151;
+        }
+
+        .brand h4 {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .brand small {
+            color: #9ca3af;
+        }
+
+        .menu-title {
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 20px 10px 10px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            margin-bottom: 6px;
+            color: #d1d5db;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .sidebar-link:hover {
+            background: #1f2937;
+            color: white;
+        }
+
+        .sidebar-link.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .footer {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 15px 30px;
+            color: #6b7280;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .table-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .badge-department {
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        @@media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .sidebar-link {
+                display: inline-flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <h4>
+                <i class="bi bi-mortarboard-fill"></i>
+                MVC 3Tir
+            </h4>
+
+            <small>Management System</small>
+        </div>
+
+        <div class="menu-title">
+            MAIN
+        </div>
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="sidebar-link @(currentController == "Home" ? "active" : "")">
+
+            <i class="bi bi-grid-fill"></i>
+            <span>Dashboard</span>
+
+        </a>
+
+        <div class="menu-title">
+            MANAGEMENT
+        </div>
+
+        <a asp-controller="Instructor"
+           asp-action="Index"
+           class="sidebar-link @(currentController == "Instructor" && currentAction == "Index" ? "active" : "")">
+
+            <i class="bi bi-person-workspace"></i>
+            <span>Instructors</span>
+
+        </a>
+
+        
+
+        <a asp-controller="Course"
+           asp-action="Index"
+           class="sidebar-link @(currentController == "Course" && currentAction == "Index" ? "active" : "")">
+
+            <i class="bi bi-book-fill"></i>
+            <span>Courses</span>
+
+        </a>
+        
+
+    </aside>
+
+
+    <!-- Main -->
+    <div class="main">
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div>
+                <h5 class="mb-0">
+                    @ViewData["Title"]
+                </h5>
+
+                <small class="text-muted">
+                    Management System
+                </small>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+
+                <i class="bi bi-person-circle fs-4"></i>
+
+                <span>
+                    Saad
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- Page Content -->
+        <main class="content">
+
+            @RenderBody()
+
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            <span>
+                © 2026 MVC 3Tir
+            </span>
+
+            <span>
+                ASP.NET Core MVC
+            </span>
+
+        </footer>
+
     </div>
-</footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
