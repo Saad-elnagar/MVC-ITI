@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDbContext<ECDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("EcommerceConnection")));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

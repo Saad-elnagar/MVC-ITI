@@ -199,6 +199,16 @@
 
         </a>
         
+        
+        <a asp-controller="Product"
+           asp-action="Index"
+           class="sidebar-link @(currentController == "Product" && currentAction == "Index" ? "active" : "")">
+
+            <i class="bi bi-book-fill"></i>
+            <span>Products</span>
+
+        </a>
+        
 
     </aside>
 

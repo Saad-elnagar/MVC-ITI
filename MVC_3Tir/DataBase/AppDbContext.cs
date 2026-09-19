@@ -18,8 +18,8 @@ public class AppDbContext  : DbContext
     public DbSet<Course> Courses { get; set; }
     public DbSet<CourseResult> CourseResults { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
         base.OnModelCreating(modelBuilder);
         
         modelBuilder.Entity<Instructor>()

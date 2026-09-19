@@ -22,7 +22,7 @@ public class CourseController : Controller
         {
             Id =  c.Id,
             DepartmentId =  c.DepartmentId,
-            DepatmentName = c.Department.Name,
+            DepartmentName = c.Department.Name,
             Name = c.Name,
 
         });
@@ -90,7 +90,7 @@ public class CourseController : Controller
                 Id = c.Id,
                 Name = c.Name,
                 DepartmentId = c.DepartmentId,
-                DepatmentName = c.Department.Name
+                DepartmentName = c.Department.Name
             })
             .FirstOrDefault();
 
