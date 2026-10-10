@@ -1,5 +1,7 @@
 # MVC-ITI — ASP.NET Core MVC Practice Project
 
+[![Build](https://github.com/Saad-elnagar/MVC-ITI/actions/workflows/dotnet-build.yml/badge.svg?branch=master)](https://github.com/Saad-elnagar/MVC-ITI/actions/workflows/dotnet-build.yml)
+
 An ASP.NET Core MVC application used to practice MVC workflows, Entity Framework Core, relational data, view models, and SQL Server integration.
 
 ## Features
